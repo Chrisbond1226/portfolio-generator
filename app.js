@@ -1,16 +1,22 @@
-const fs = require('fs');
-const generatePage = require("./src/page-template.js");
+const inquirer = require('inquirer');
+// const fs = require('fs');
+// const generatePage = require("./src/page-template.js");
 
 
-// this is just storing the two arguments into an array
-const profileDataArgs = process.argv.slice(2);
+// const pageHTML = generatePage(name, github);
 
+// fs.writeFile('./index.html', pageHTML, err => {
+//     if (err) throw new Error(err);
 
-// this means name will always be the first argument put into the command and github the second
-const [name, github] = profileDataArgs;
+//     console.log ('Portfolio complete! Checkout the index.html to see the output!');
+// });
 
-fs.writeFile('./index.html', generatePage(name, github), err => {
-    if (err) throw new Error(err);
-
-    console.log ('Portfolio complete! Checkout the index.html to see the output!');
-});
+inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?'
+        }
+    ])
+    .then(answers => console.log(answers));
